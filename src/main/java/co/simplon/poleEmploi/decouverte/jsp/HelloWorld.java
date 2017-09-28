@@ -46,7 +46,7 @@ public class HelloWorld extends HttpServlet {
 
 //		HttpServletRequest newRequest = new HttpServletRequest();
 		request.setAttribute("nom", parametre.toUpperCase());
-		request.getRequestDispatcher("./hello.jsp").include(request, response);
+		request.getRequestDispatcher("WEB-INF/hello.jsp").forward(request, response);
 //solution 2		request.getRequestDispatcher("./hello.jsp").include(request, response);
 //solution 1		response.sendRedirect("./hello.jsp?nom="+parametre);
 //		response.setContentType("text/html");

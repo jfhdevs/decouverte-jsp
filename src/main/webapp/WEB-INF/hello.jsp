@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% String nom = request.getParameter("nom"); 
+<% String nom = (String) request.getAttribute("nom"); 
    if (nom.equals("")) nom="World !"; %>
 <h1> Hello <%= nom %></h1>
 </body>
