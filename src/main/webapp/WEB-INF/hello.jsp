@@ -13,7 +13,7 @@
 
 <%	ArrayList<Personne> couple = (ArrayList<Personne>)request.getAttribute("couple");
 	for (Personne individu : couple){ %>
- 		<p><%=individu.getNom()%> <%=individu.getPrenom()%>
+ 		<br>&nbsp;&nbsp;<%=individu.getNom()%> <%=individu.getPrenom()%>
 <%	}%>
 
 
@@ -21,8 +21,8 @@
 <%-- 	<p> <c:out value="${individu.nom}"/> <c:out value="${individu.prenom}"/> --%>
 <!-- </c:forEach> -->
 </h1>
-<h1>Hello ${couple[0].nom} ${couple[0].prenom}</h1>
-<h1>Hello ${couple[1].nom} ${couple[1].prenom}</h1>
+<h4>Hello ${couple[0].nom} ${couple[0].prenom}</h4>
+<h4>Hello ${couple[1].nom} ${couple[1].prenom}</h4>
 Vous naviguez avec ${header["user-agent"]}
 <p>Adresse Ip : ${ip}
 </body>
