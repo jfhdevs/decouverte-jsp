@@ -36,18 +36,23 @@ public class HelloWorld extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String message = messagePut;
+//		String message = messagePut;
 		String parametre = request.getParameter("nom");
-		if (parametre != null) {
-			message += parametre;
-		} else {
-			message += "World";
-		}
+//		if (parametre != null) {
+//			message += parametre;
+//		} else {
+//			message += "World";
+//		}
 
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-		out.println("<h1>" + message + "</h1>");
+//		HttpServletRequest newRequest = new HttpServletRequest();
+		request.setAttribute("nom", parametre.toUpperCase());
+		request.getRequestDispatcher("./hello.jsp").include(request, response);
+//solution 2		request.getRequestDispatcher("./hello.jsp").include(request, response);
+//solution 1		response.sendRedirect("./hello.jsp?nom="+parametre);
+//		response.setContentType("text/html");
+//
+//		PrintWriter out = response.getWriter();
+//		out.println("<h1>" + message + "</h1>");
 	}
 
 	public void destroy() {
