@@ -2,20 +2,17 @@ package co.simplon.poleEmploi.decouverte.jsp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class HelloWorld extends HttpServlet {
-
+	private static final long serialVersionUID = 1L;
 	private String messageGet;
-	private String messagePut;
-
 	public void init() throws ServletException {
 		messageGet = "Hello ";
-		messagePut = "Bonjour ";
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,15 +33,20 @@ public class HelloWorld extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String message;
-		String parametre = request.getParameter("nom");
-		if ((parametre == null)||(parametre.equals("")))	{ message = "World !";
-		} else												{ message = parametre.toUpperCase();
-		} // if
-		request.setAttribute("nom", message);
+		Personne individu = new Personne(request.getParameter("nom").toUpperCase(), request.getParameter("prenom"));
+		Personne conjoint = new Personne(request.getParameter("nom").toUpperCase(), request.getParameter("conjoint"));
+		if (individu.getNom().equals("")) {
+			individu.setNom("World");
+			individu.setPrenom("!");
+			conjoint.setNom("World");
+			conjoint.setPrenom("!!");
+		}
+		ArrayList<Personne> couple = new ArrayList<Personne>();
+		couple.add(individu);
+		couple.add(conjoint);
+		request.setAttribute("ip", request.getRemoteHost());
+		request.setAttribute("couple", couple);
 		request.getRequestDispatcher("WEB-INF/hello.jsp").forward(request, response);
-//solution 2		request.getRequestDispatcher("./hello.jsp").include(request, response);
-//solution 1		response.sendRedirect("./hello.jsp?nom="+parametre);
 	} // doPost
 
 	public void destroy() {
